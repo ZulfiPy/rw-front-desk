@@ -162,3 +162,46 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.blue-btn-grad {background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%)}
+.blue-btn-grad {
+  /*margin: 10px;*/
+  /*padding: 15px 45px;*/
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  /*width: 50px;*/
+  /*display: block;*/
+}
+
+.blue-btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.dark-green-btn-grad {background-image: linear-gradient(to right, #134E5E 0%, #71B280  51%, #134E5E  100%)}
+.dark-green-btn-grad {
+  /*margin: 10px;*/
+  /*padding: 15px 45px;*/
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  /*display: block;*/
+}
+
+.dark-green-btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
