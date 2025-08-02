@@ -38,7 +38,7 @@ const MainNav = () => {
     return (
         <nav>
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex justify-between items-center w-full px-4 py-4 bg-gray-100">
+            <div className="hidden lg:flex justify-between items-center w-full px-4 py-4 border-b-1">
                 <div>
                     <NavigationMenu>
                         <NavigationMenuList>
@@ -59,7 +59,7 @@ const MainNav = () => {
                         {mainNavItems.map(({ href, label, icon: Icon }) => (
                             <NavigationMenuItem key={href}>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link href={href} className="flex-row gap-2">
+                                    <Link href={href} className="flex-row gap-2 rounded-xs border-r-2">
                                         <Icon className="h-4 w-4" />
                                         {label}
                                     </Link>
@@ -97,8 +97,8 @@ const MainNav = () => {
             </div>
 
             {/* Mobile Navigation */}
-            <div className="lg:hidden flex justify-between items-center px-4 py-2 bg-gray-100">
-                <div className="flex-1 flex justify-center">
+            <div className="lg:hidden flex justify-between items-center px-4 py-2  container mx-auto ">
+                <div className="flex-1 flex justify-start">
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
@@ -125,7 +125,7 @@ const MainNav = () => {
                                 <Menu className="h-4 w-4" />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent>
+                        <DropdownMenuContent className={"bg-gray-100"}>
                             {mainNavItems.map(({ href, label, icon: Icon }) => (
                                 <DropdownMenuItem key={href}>
                                     <Link href={href} className="flex items-center gap-2">
