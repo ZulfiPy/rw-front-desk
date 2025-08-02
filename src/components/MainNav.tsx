@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { CircleIcon, TimerReset, Signature, House, Ellipsis, ScanFace, UserPlus, Menu } from "lucide-react"
+import {CircleIcon, TimerReset, Signature, House, Ellipsis, ScanFace, UserPlus, Menu} from "lucide-react"
 
 import {
     NavigationMenu,
@@ -17,7 +17,7 @@ import {
     DropdownMenuItem, DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import {ThemeToggle} from "@/components/ThemeToggle";
 
 interface NavItem {
@@ -27,10 +27,10 @@ interface NavItem {
 }
 
 const mainNavItems: NavItem[] = [
-    { href: "/weekly", label: "Weekly", icon: TimerReset },
-    { href: "/agreement", label: "Agreement", icon: Signature },
-    { href: "/to-do", label: "To Do", icon: CircleIcon },
-    { href: "/more", label: "More", icon: Ellipsis },
+    {href: "/weekly", label: "Weekly", icon: TimerReset},
+    {href: "/agreement", label: "Agreement", icon: Signature},
+    {href: "/to-do", label: "To Do", icon: CircleIcon},
+    {href: "/more", label: "More", icon: Ellipsis},
 ];
 
 const MainNav = () => {
@@ -45,7 +45,7 @@ const MainNav = () => {
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                     <Link href={"/"} className={"flex-row gap-2 border-2"}>
-                                        <House className="h-4 w-4" />
+                                        <House className="h-4 w-4"/>
                                         Home
                                     </Link>
                                 </NavigationMenuLink>
@@ -56,11 +56,11 @@ const MainNav = () => {
 
                 <NavigationMenu>
                     <NavigationMenuList>
-                        {mainNavItems.map(({ href, label, icon: Icon }) => (
+                        {mainNavItems.map(({href, label, icon: Icon}) => (
                             <NavigationMenuItem key={href}>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link href={href} className="flex-row gap-2 rounded-xs border-r-2">
-                                        <Icon className="h-4 w-4" />
+                                    <Link href={href} className="flex-row gap-2  border-1">
+                                        <Icon />
                                         {label}
                                     </Link>
                                 </NavigationMenuLink>
@@ -75,7 +75,7 @@ const MainNav = () => {
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                     <Link href={"/sign-in"} className={"blue-btn-grad flex-row gap-2"}>
-                                        <ScanFace className={"text-black h-4 w-4"} />
+                                        <ScanFace className={"text-black h-4 w-4"}/>
                                         Sign in
                                     </Link>
                                 </NavigationMenuLink>
@@ -83,13 +83,13 @@ const MainNav = () => {
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                     <Link href={"/register"} className={"dark-green-btn-grad flex-row gap-2"}>
-                                        <UserPlus className="h-4 w-4" />
+                                        <UserPlus className="h-4 w-4"/>
                                         Register
                                     </Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <ThemeToggle />
+                                <ThemeToggle/>
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
@@ -104,7 +104,7 @@ const MainNav = () => {
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                     <Link href={"/"} className={"flex-row gap-2 border-2"}>
-                                        <House className="h-4 w-4" />
+                                        <House className="h-4 w-4"/>
                                         Home
                                     </Link>
                                 </NavigationMenuLink>
@@ -114,7 +114,7 @@ const MainNav = () => {
                 </div>
 
                 <div className={"flex items-center gap-2"}>
-                    <ThemeToggle />
+                    <ThemeToggle/>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
@@ -122,31 +122,32 @@ const MainNav = () => {
                                 size="icon"
                                 aria-label="Open mobile menu"
                             >
-                                <Menu className="h-4 w-4" />
+                                <Menu className="h-4 w-4"/>
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className={"bg-gray-100"}>
-                            {mainNavItems.map(({ href, label, icon: Icon }) => (
+                            {mainNavItems.map(({href, label, icon: Icon}) => (
                                 <DropdownMenuItem key={href}>
                                     <Link href={href} className="flex items-center gap-2">
-                                        <Icon className="h-4 w-4" />
+                                        <Icon/>
                                         {label}
                                     </Link>
                                 </DropdownMenuItem>
                             ))}
 
-                            <DropdownMenuSeparator className={"bg-black"} />
+                            <DropdownMenuSeparator className={"bg-black"}/>
 
                             <DropdownMenuItem>
                                 <Link href={"/sign-in"} className={"blue-btn-grad flex flex-row gap-2 px-4 py-2"}>
-                                    <ScanFace className={"text-black h-4 w-4"} />
+                                    <ScanFace className={"text-black h-4 w-4"}/>
                                     Sign in
                                 </Link>
                             </DropdownMenuItem>
 
                             <DropdownMenuItem>
-                                <Link href={"/register"} className={"dark-green-btn-grad flex flex-row gap-2 px-4 py-2"}>
-                                    <UserPlus className="h-4 w-4" />
+                                <Link href={"/register"}
+                                      className={"dark-green-btn-grad flex flex-row gap-2 px-4 py-2"}>
+                                    <UserPlus className="h-4 w-4"/>
                                     Register
                                 </Link>
                             </DropdownMenuItem>
