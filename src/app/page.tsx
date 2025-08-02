@@ -9,10 +9,10 @@ import DashboardVehiclesCard from "@/components/DashboardVehiclesCard";
 export default function Home() {
     return (
         <div>
-            <DashboardHeader />
+            <DashboardHeader/>
 
-            <div className={"flex min-h-screen bg-gray-50"}>
-                <DashboardSideMenu />
+            <div className={"flex min-h-screen"}>
+                <DashboardSideMenu/>
 
 
                 <div className={"flex-1"}>
@@ -23,31 +23,32 @@ export default function Home() {
                                 Dashboard
                             </h1>
 
-                            <DashboardQuickStartCards />
+                            <DashboardQuickStartCards/>
 
                             <div className="grid gap-3 sm:gap-4 lg:gap-[10px] mt-6
                                           grid-cols-1 sm:grid-cols-2 sm:grid-rows-[120px_300px_300px] lg:grid-cols-[300px_300px_300px] lg:grid-rows-[120px_300px]">
 
                                 {/* Welcome card - spans full width on mobile, 2 cols on desktop */}
-                                <div className="sm:col-span-2 lg:col-span-2 p-4 lg:p-6 bg-gradient-to-r from-blue-50 to-indigo-100 rounded-xl shadow-lg border border-blue-200 flex items-center justify-center hover:shadow-xl transition-shadow">
+                                <div
+                                    className="sm:col-span-2 lg:col-span-2 p-4 lg:p-6 bg-gradient-to-r from-blue-150 to-indigo-200 rounded-xl shadow-lg border border-blue-200 flex items-center justify-center hover:shadow-xl transition-shadow">
                                     <span className="text-lg sm:text-xl font-semibold">Welcome, Zulfugar!</span>
                                 </div>
 
                                 {/* Tasks */}
-                                <DashboardTasksCard />
+                                <DashboardTasksCard/>
 
                                 {/* Customers */}
-                                <DashboardCustomersCard />
+                                <DashboardCustomersCard/>
 
                                 {/* Vehicles */}
-                                <DashboardVehiclesCard />
+                                <DashboardVehiclesCard/>
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
 
-            <MainFooter />
+            <MainFooter/>
         </div>
     );
 }
