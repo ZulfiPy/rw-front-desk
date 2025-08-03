@@ -7,48 +7,50 @@ import DashboardCustomersCard from "@/components/DashboardCustomersCard";
 import DashboardVehiclesCard from "@/components/DashboardVehiclesCard";
 
 export default function Home() {
-    return (
-        <div>
-            <DashboardHeader/>
+  const userName = "Zulfugar";
 
-            <div className={"flex min-h-screen"}>
-                <DashboardSideMenu/>
+  const gridClasses = [
+    "grid gap-3 sm:gap-4 lg:gap-[10px] mt-6",
+    "grid-cols-1 sm:grid-cols-2 sm:grid-rows-[120px_300px_300px]",
+    "lg:grid-cols-[300px_300px_300px] lg:grid-rows-[120px_300px]",
+  ].join(" ");
 
+  return (
+    <div>
+      <DashboardHeader userName={userName} />
 
-                <div className={"flex-1"}>
+      <div className={"flex min-h-screen"}>
+        <DashboardSideMenu />
 
-                    <section className="container mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:justify-center ">
-                        <div className="mt-6">
-                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-900 via-red-800 to-blue-900 bg-clip-text text-transparent drop-shadow-lg text-center sm:text-left">
-                                Dashboard
-                            </h1>
+        <main className={"flex-1"}>
+          <section className="container mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:justify-center ">
+            <div className="mt-6">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-[0_0_20px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] text-center sm:text-left filter brightness-125 animate-pulse">
+                Dashboard
+              </h1>
 
-                            <DashboardQuickStartCards/>
+              <DashboardQuickStartCards />
 
-                            <div className="grid gap-3 sm:gap-4 lg:gap-[10px] mt-6
-                                          grid-cols-1 sm:grid-cols-2 sm:grid-rows-[120px_300px_300px] lg:grid-cols-[300px_300px_300px] lg:grid-rows-[120px_300px]">
-
-                                {/* Welcome card - spans full width on mobile, 2 cols on desktop */}
-                                <div
-                                    className="sm:col-span-2 lg:col-span-2 p-4 lg:p-6 bg-gradient-to-r from-blue-150 to-indigo-200 rounded-xl shadow-lg border border-blue-200 flex items-center justify-center hover:shadow-xl transition-shadow">
-                                    <span className="text-lg sm:text-xl font-semibold">Welcome, Zulfugar!</span>
-                                </div>
-
-                                {/* Tasks */}
-                                <DashboardTasksCard/>
-
-                                {/* Customers */}
-                                <DashboardCustomersCard/>
-
-                                {/* Vehicles */}
-                                <DashboardVehiclesCard/>
-                            </div>
-                        </div>
-                    </section>
+              <div className={gridClasses}>
+                <div className="sm:col-span-2 lg:col-span-2 p-4 lg:p-6 bg-gradient-to-r from-blue-150 to-indigo-200 rounded-xl shadow-lg border border-blue-200 flex items-center justify-center hover:shadow-xl transition-shadow">
+                  <span className="text-lg sm:text-xl font-semibold">
+                    Welcome,
+                    <span className="ml-2 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 bg-clip-text text-transparent font-black text-xl sm:text-2xl tracking-wide">
+                      {userName}
+                    </span>
+                    !
+                  </span>
                 </div>
+                <DashboardTasksCard />
+                <DashboardCustomersCard />
+                <DashboardVehiclesCard />
+              </div>
             </div>
+          </section>
+        </main>
+      </div>
 
-            <MainFooter/>
-        </div>
-    );
+      <MainFooter />
+    </div>
+  );
 }
