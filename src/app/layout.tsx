@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import MainNav from "@/components/MainNav";
+import DashboardHeader from "@/components/DashboardHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,20 +25,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const userName = "Zulfugar";
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-          <MainNav/>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MainNav />
+          <DashboardHeader userName={userName} />
           {children}
-      </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,5 +1,4 @@
 import MainFooter from "@/components/MainFooter";
-import DashboardHeader from "@/components/DashboardHeader";
 import DashboardSideMenu from "@/components/DashboardSideMenu";
 import DashboardQuickStartCards from "@/components/DashboardQuickStartCards";
 import DashboardTasksCard from "@/components/DashboardTasksCard";
@@ -17,7 +16,7 @@ export default function Home() {
 
   return (
     <div>
-      <DashboardHeader userName={userName} />
+      {/*<DashboardHeader userName={userName} />*/}
 
       <div className={"flex min-h-screen"}>
         <DashboardSideMenu />
