@@ -1,6 +1,7 @@
 import { CustomersDataTable } from "@/app/customers/CustomersDataTable";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 export default async function Customers() {
   return (
@@ -19,11 +20,11 @@ export default async function Customers() {
             "sm:hidden flex justify-center gap-5 items-center mb-4 p-4 bg-gray-50 rounded-lg"
           }
         >
-          <div className="flex gap-2">
-            <Button>
+          <div className="flex gap-2 items-center">
+            <Link href="/customers/new-customer" className={"flex"}>
               <Plus className="mr-2 h-4 w-4" />
               Add Customer
-            </Button>
+            </Link>
           </div>
           <div className="text-sm text-gray-600">
             Total customers: {/* data.length */} 254
@@ -36,10 +37,12 @@ export default async function Customers() {
 
         <div className={"hidden sm:flex"}>
           <Button
+            asChild
             className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg"
-            size="icon"
           >
-            <Plus className="h-6 w-6" />
+            <Link href="/customers/new-customer">
+              <Plus className="h-6 w-6" />
+            </Link>
           </Button>
         </div>
       </div>

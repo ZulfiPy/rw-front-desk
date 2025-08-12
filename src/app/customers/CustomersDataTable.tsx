@@ -34,6 +34,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 const data: Customer[] = [
   {
@@ -192,8 +193,14 @@ export const columns: ColumnDef<Customer>[] = [
               Copy customer ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer details</DropdownMenuItem>
-            <DropdownMenuItem>Edit customer</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/customers/${customer.id}/view`}>
+                View customer details
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/customers/${customer.id}/edit`}>Edit customer</Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
