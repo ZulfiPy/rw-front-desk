@@ -1,4 +1,3 @@
-import MainFooter from "@/components/MainFooter";
 import DashboardSideMenu from "@/components/DashboardSideMenu";
 import DashboardQuickStartCards from "@/components/DashboardQuickStartCards";
 import DashboardTasksCard from "@/components/DashboardTasksCard";
@@ -16,13 +15,11 @@ export default function Home() {
 
   return (
     <div>
-      {/*<DashboardHeader userName={userName} />*/}
-
       <div className={"flex min-h-screen"}>
         <DashboardSideMenu />
 
         <main className={"flex-1"}>
-          <section className="container mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:justify-center ">
+          <section className="container mx-auto px-4 sm:px-6 lg:px-8 xl:flex xl:justify-center">
             <div className="mt-6">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-[0_0_20px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] text-center sm:text-left filter brightness-125 animate-pulse">
                 Dashboard
@@ -48,8 +45,6 @@ export default function Home() {
           </section>
         </main>
       </div>
-
-      <MainFooter />
     </div>
   );
 }
