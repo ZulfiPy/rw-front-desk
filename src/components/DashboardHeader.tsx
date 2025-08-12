@@ -2,7 +2,7 @@ import { PersonStanding } from "lucide-react";
 
 const DashboardHeader = ({ userName }: { userName: string }) => {
   return (
-    <header className="hadow-sm border-b border-gray-200">
+    <header className="shadow-sm border-b border-gray-200">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
