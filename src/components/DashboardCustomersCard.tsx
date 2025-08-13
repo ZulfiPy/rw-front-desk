@@ -3,12 +3,12 @@ import Link from "next/link";
 
 const DashboardCustomersCard = () => {
   return (
-    <div className="sm:col-start-2 sm:row-start-2 lg:col-start-1 lg:row-start-2 p-4 lg:p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
+    <div className="flex-1 min-w-[280px] max-w-[300px] p-4 lg:p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
       <h2 className="text-base sm:text-lg font-semibold mb-4  border-b border-gray-200 pb-2">
         Customers
       </h2>
-      <div className="h-62 relative">
-        <div className={"h-48 overflow-y-auto pb-2"}>
+      <div className="relative h-80">
+        <div className="overflow-y-auto pb-2 h-64">
           <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
