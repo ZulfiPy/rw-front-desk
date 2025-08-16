@@ -3,6 +3,7 @@ import DashboardQuickStartCards from "@/components/DashboardQuickStartCards";
 import DashboardTasksCard from "@/components/DashboardTasksCard";
 import DashboardCustomersCard from "@/components/DashboardCustomersCard";
 import DashboardVehiclesCard from "@/components/DashboardVehiclesCard";
+import DashboardPaymentsCard from "@/components/DashboardPaymentsCard";
 
 export default function Home() {
   const userName = "Zulfugar";
@@ -39,8 +40,7 @@ export default function Home() {
                 <DashboardTasksCard />
                 <DashboardCustomersCard />
                 <DashboardVehiclesCard />
-                {/* Payments component will be used instead of duplicated vehicles card... */}
-                <DashboardVehiclesCard />
+                <DashboardPaymentsCard />
               </div>
             </div>
           </section>
