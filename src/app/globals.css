@@ -205,3 +205,8 @@ body {
   color: #fff;
   text-decoration: none;
 }
+
+input:focus::selection {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
