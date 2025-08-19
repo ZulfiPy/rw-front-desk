@@ -66,7 +66,7 @@ export const ResidencyStep = ({ form }: ResidencyStepProps) => {
                     htmlFor="resident-no"
                     className="text-sm font-medium cursor-pointer"
                   >
-                    No, the customer is not not an Estonian resident.
+                    No, the customer is not an Estonian resident.
                   </label>
                 </div>
               </div>
