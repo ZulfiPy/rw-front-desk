@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import MainNav from "@/components/MainNav";
 import DashboardHeader from "@/components/DashboardHeader";
 import MainFooter from "@/components/MainFooter";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +44,14 @@ export default function RootLayout({
           <MainNav />
           <DashboardHeader userName={userName} />
           {children}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            pauseOnFocusLoss={true}
+            rtl={false}
+          />
           <MainFooter />
         </ThemeProvider>
       </body>

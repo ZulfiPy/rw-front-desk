@@ -5,29 +5,12 @@ import {
 } from "@/validators/customerFormValidator";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { ResidencyStep } from "@/app/customers/new-customer/ResidencyStep";
 import { DetailsStep } from "@/app/customers/new-customer/DetailsStep";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  AlertCircleIcon,
-  CheckCircle2Icon,
-  ChevronLeft,
-  ChevronRight,
-  Loader2,
-  PopcornIcon,
-  Terminal,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   Carousel,
@@ -35,12 +18,20 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { toast } from "react-toastify";
 
 const CustomerFormPage = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+
+  const sendNotification = (type: string, message: string) => {
+    if (type === "success") {
+      toast.success(message);
+    } else if (type === "error") {
+      toast.error(message);
+    }
+  };
 
   const form = useForm<CustomerFormData>({
     resolver: zodResolver(customerFormSchema),
@@ -85,10 +76,10 @@ const CustomerFormPage = () => {
   const onSubmit = async (data: CustomerFormData) => {
     try {
       console.log("Form submitted:", JSON.stringify(data, null, 2));
-      // alert(`Form submitted successfully!\n\n${JSON.stringify(data, null, 2)}`);
+      sendNotification("success", "Form submitted successfully!");
     } catch (error) {
       console.error("Submission error:", error);
-      // alert("Failed to submit form. Please try again.");
+      sendNotification("error", "Failed to submit form. Please try again.");
     }
   };
 
