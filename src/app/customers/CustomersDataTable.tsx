@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState, useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -35,51 +35,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
-
-const data: Customer[] = [
-  {
-    id: "1",
-    firstName: "Dan",
-    lastName: "Michaeli",
-    personalID: 38201210093,
-    currentVehicle: "392BYK",
-  },
-  {
-    id: "2",
-    firstName: "Jevgeni",
-    lastName: "Lebedev",
-    personalID: 39011270287,
-    currentVehicle: "726NDN",
-  },
-  {
-    id: "3",
-    firstName: "Aleksei",
-    lastName: "Muzaffarov",
-    personalID: 39004020240,
-    currentVehicle: "169TLT",
-  },
-  {
-    id: "4",
-    firstName: "Sergei",
-    lastName: "Tihhomirov",
-    personalID: 37912132710,
-    currentVehicle: "880PXK",
-  },
-  {
-    id: "5",
-    firstName: "David",
-    lastName: "Kasuba",
-    personalID: 50207020289,
-    currentVehicle: "838SNT",
-  },
-];
+import { Driver } from "@/types/driver";
 
 export type Customer = {
   id: string;
   firstName: string;
   lastName: string;
-  personalID: number;
-  currentVehicle: string;
+  personalID: number | null;
+  currentVehicle: string | null;
 };
 
 export const columns: ColumnDef<Customer>[] = [
@@ -152,9 +115,10 @@ export const columns: ColumnDef<Customer>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="font-mono">{row.getValue("personalID")}</div>
-    ),
+    cell: ({ row }) => {
+      const personalID = row.getValue("personalID") as number | null;
+      return <div className="font-mono">{personalID ?? "No ID"}</div>;
+    },
   },
   {
     accessorKey: "currentVehicle",
@@ -169,7 +133,14 @@ export const columns: ColumnDef<Customer>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div>{row.getValue("currentVehicle")}</div>,
+    cell: ({ row }) => {
+      const currentVehicle = row.getValue("currentVehicle") as string | null;
+      return (
+        <div className="font-mono">
+          {currentVehicle ?? "No vehicle assigned"}
+        </div>
+      );
+    },
   },
   {
     id: "actions",
@@ -210,14 +181,51 @@ export const columns: ColumnDef<Customer>[] = [
   },
 ];
 
+async function fetchDrivers(): Promise<Driver[]> {
+  const response = await fetch("http://localhost:8080/api/v1/drivers");
+  if (!response.ok) {
+    throw new Error("Failed to fetch drivers");
+  }
+  return await response.json();
+}
+
+function transformDriversToCustomers(drivers: Driver[]): Customer[] {
+  return drivers.map((driver) => ({
+    id: driver.id.toString(),
+    firstName: driver.firstName,
+    lastName: driver.lastName,
+    personalID: driver.personalID,
+    currentVehicle: driver.currentVehicle,
+  }));
+}
+
 export function CustomersDataTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
+
+  useEffect(() => {
+    const loadDrivers = async () => {
+      try {
+        setError(null);
+        const drivers = await fetchDrivers();
+        const transformedCustomers = transformDriversToCustomers(drivers);
+        setCustomers(transformedCustomers);
+      } catch (error) {
+        setError("Failed to load customers. Please try again.");
+        console.log("Error fetching drivers:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDrivers();
+  }, []);
 
   const getHeaderAlignment = (cell: string) => {
     const baseClasses = "text-left";
@@ -230,7 +238,7 @@ export function CustomersDataTable() {
   };
 
   const table = useReactTable({
-    data,
+    data: customers,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -247,6 +255,11 @@ export function CustomersDataTable() {
       rowSelection,
     },
   });
+
+  if (loading) return <div className="text-center p-y-4">Loading...</div>;
+
+  if (error)
+    return <div className="text-center py-4 text-red-500">{error}</div>;
 
   return (
     <div className="w-full">
