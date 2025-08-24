@@ -4,14 +4,14 @@ export interface Driver {
   lastName: string;
   isEstonianResident: boolean;
   personalID: number | null;
-  dateOfBirth: string;
+  dateOfBirth: number[];
   phoneNumber: string;
   email: string;
   livingAddress: string;
   driversLicenseNumber: string;
   currentVehicle: string | null;
-  createdAt: string;
-  lastEditedAt: string;
+  createdAt: number[];
+  lastEditedAt: number[];
 }
 
 export interface SimpleDriver {
