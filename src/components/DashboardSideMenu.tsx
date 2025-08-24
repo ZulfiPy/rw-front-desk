@@ -1,17 +1,29 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  UserSearch,
+  Car,
+  CheckCheck,
+  CreditCard,
+  Settings,
+} from "lucide-react";
 
 const DashboardSideMenu = () => {
   const pathname = usePathname();
 
   const menuItems = [
-    { href: "/", label: "Dashboard", icon: "📊" },
-    { href: "/customers", label: "Customers", icon: "👥" },
-    { href: "/vehicles", label: "Vehicles", icon: "🚗" },
-    { href: "/tasks", label: "Tasks", icon: "✅" },
-    { href: "/payments", label: "Payments", icon: "💳" },
-    { href: "/settings", label: "Settings", icon: "⚙️" },
+    {
+      href: "/",
+      label: "Dashboard",
+      icon: <LayoutDashboard className="mr-2" />,
+    },
+    { href: "/customers", label: "Customers", icon: <UserSearch /> },
+    { href: "/vehicles", label: "Vehicles", icon: <Car /> },
+    { href: "/tasks", label: "Tasks", icon: <CheckCheck /> },
+    { href: "/payments", label: "Payments", icon: <CreditCard /> },
+    { href: "/settings", label: "Settings", icon: <Settings /> },
   ];
 
   return (
@@ -37,7 +49,7 @@ const DashboardSideMenu = () => {
                       : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                 >
-                  {item.icon} {item.label}
+                  <span className="mr-2">{item.icon}</span> {item.label}
                 </Link>
               );
             })}
