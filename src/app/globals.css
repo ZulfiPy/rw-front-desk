@@ -210,3 +210,8 @@ input:focus::selection {
   background-color: #3b82f6 !important;
   color: white !important;
 }
+
+.placeholder-gray::placeholder {
+    color: #a0aec0; /* Tailwind's gray-400 */
+    opacity: 1;
+}
