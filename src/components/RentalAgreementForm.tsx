@@ -1,73 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useRentalAgreement } from "@/context/RentalAgreementContext";
 
 export default function RentalAgreementForm() {
-  const [formData, setFormData] = useState({
-    // Section 1: Renter
-    fullName: "",
-    phoneNumber: "",
-    email: "",
-    personalId: "",
-    dateOfBirth: "",
-    livingAddress: "",
-    countryOfBirth: "Estonia",
-    driverLicenseNumber: "",
-    licenseIssueDate: "",
-    licenseExpirationDate: "",
-
-    // Section 2: Vehicle
-    makeModel: "",
-    registrationPlate: "",
-
-    // Section 3: Rental Period
-    startDate: "",
-    endDate: "Tähtajatu",
-
-    // Section 4: Fee
-    feeBasis: "Kokkuleppe",
-    paymentProcedure: "Ettemakse",
-
-    // Section 5: Car handing over
-    toLessee: "Pille 11/5, Tallinn",
-    toLessor: "Pille 11/5, Tallinn",
-
-    // Section 6: Use
-    purposeOfUse: "",
-    users: "",
-
-    // Section 7: Odometer image
-    odometerImage: null as File | null,
-
-    // Section 8: Additional Information
-    additionalInfo: "",
-  });
+  const { formData, updateField, submitAgreement } = useRentalAgreement();
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    updateField(field as keyof typeof formData, value);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setFormData((prev) => ({ ...prev, odometerImage: file }));
+    updateField("odometerImage", file);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    submitAgreement();
     console.log("Form submitted:", formData);
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="w-full max-w-4xl mx-auto">
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Section 1: Renter */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>1. Renter</CardTitle>
           </CardHeader>
@@ -114,17 +78,17 @@ export default function RentalAgreementForm() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="personalId">
+                <Label htmlFor="personalID">
                   Personal ID / Registration Code
                 </Label>
                 <Input
-                  id="personalId"
+                  id="personalID"
                   type="text"
                   placeholder="Enter driver's personal ID or registration code"
                   className="placeholder-gray"
-                  value={formData.personalId}
+                  value={formData.personalID}
                   onChange={(e) =>
-                    handleInputChange("personalId", e.target.value)
+                    handleInputChange("personalID", e.target.value)
                   }
                 />
               </div>
@@ -167,41 +131,17 @@ export default function RentalAgreementForm() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="driverLicenseNumber">
+                <Label htmlFor="driversLicenseNumber">
                   Driver&apos;s License Number
                 </Label>
                 <Input
-                  id="driverLicenseNumber"
+                  id="driversLicenseNumber"
                   type="text"
                   placeholder="Enter driver's license number"
                   className="placeholder-gray"
-                  value={formData.driverLicenseNumber}
+                  value={formData.driversLicenseNumber}
                   onChange={(e) =>
-                    handleInputChange("driverLicenseNumber", e.target.value)
-                  }
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="licenseIssueDate">License Issue Date</Label>
-                <Input
-                  id="licenseIssueDate"
-                  type="date"
-                  value={formData.licenseIssueDate}
-                  onChange={(e) =>
-                    handleInputChange("licenseIssueDate", e.target.value)
-                  }
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="licenseExpirationDate">
-                  License Expiration Date
-                </Label>
-                <Input
-                  id="licenseExpirationDate"
-                  type="date"
-                  value={formData.licenseExpirationDate}
-                  onChange={(e) =>
-                    handleInputChange("licenseExpirationDate", e.target.value)
+                    handleInputChange("driversLicenseNumber", e.target.value)
                   }
                 />
               </div>
@@ -210,7 +150,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 2: Vehicle */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>2. Vehicle</CardTitle>
           </CardHeader>
@@ -251,7 +191,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 3: Rental Period */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>3. Rental Period</CardTitle>
           </CardHeader>
@@ -306,7 +246,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 4: Fee */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>4. Fee</CardTitle>
           </CardHeader>
@@ -345,7 +285,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 5: Car Handing Over */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>5. Car Handing Over</CardTitle>
           </CardHeader>
@@ -381,7 +321,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 6: Use */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>6. Use</CardTitle>
           </CardHeader>
@@ -410,13 +350,13 @@ export default function RentalAgreementForm() {
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      const renterInfo = `${formData.fullName} (${formData.personalId}) - ${formData.driverLicenseNumber}`;
+                      const renterInfo = `${formData.fullName} (${formData.personalID}) - ${formData.driversLicenseNumber};`;
                       handleInputChange("users", renterInfo);
                     }}
                     disabled={
                       !formData.fullName ||
-                      !formData.personalId ||
-                      !formData.driverLicenseNumber
+                      !formData.personalID ||
+                      !formData.driversLicenseNumber
                     }
                   >
                     Renter
@@ -436,7 +376,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 7: Odometer Image */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>7. Odometer Image</CardTitle>
           </CardHeader>
@@ -460,7 +400,7 @@ export default function RentalAgreementForm() {
         </Card>
 
         {/* Section 8: Additional Information */}
-        <Card className="bg-gray-100 dark:bg-card [&_input]:bg-white [&_textarea]:bg-white dark:[&_input]:bg-background dark:[&_textarea]:bg-background">
+        <Card className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 dark:from-gray-950/70 dark:via-slate-950/50 dark:to-gray-950/70 dark:border-gray-900/40">
           <CardHeader>
             <CardTitle>8. Additional Information</CardTitle>
           </CardHeader>
