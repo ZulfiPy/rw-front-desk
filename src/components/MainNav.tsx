@@ -58,9 +58,7 @@ const MainNav = () => {
                 >
                   <Link
                     href={"/"}
-                    className={
-                      "flex-row gap-2 border-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-                    }
+                    className="flex-row gap-2 border-1 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 hover:from-gray-100 hover:via-slate-100 hover:to-gray-200 text-gray-800 hover:text-gray-900 dark:from-sky-50 dark:via-blue-50 dark:to-white dark:text-gray-900 dark:hover:from-blue-100 dark:hover:via-sky-100 dark:hover:to-gray-100 dark:hover:text-gray-700 transition-all duration-200"
                   >
                     <House className="h-4 w-4" />
                     Home
@@ -81,7 +79,7 @@ const MainNav = () => {
                 >
                   <Link
                     href={href}
-                    className="flex-row gap-2 border-1 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                    className="flex-row gap-2 border-1 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 hover:from-gray-100 hover:via-slate-100 hover:to-gray-200 text-gray-800 hover:text-gray-900 dark:from-sky-50 dark:via-blue-50 dark:to-white dark:text-gray-900 dark:hover:from-blue-100 dark:hover:via-sky-100 dark:hover:to-gray-100 dark:hover:text-gray-700 transition-all duration-200"
                   >
                     <Icon />
                     {label}
@@ -102,9 +100,7 @@ const MainNav = () => {
                 >
                   <Link
                     href={"/sign-in"}
-                    className={
-                      "bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm flex flex-row gap-2 px-4 py-2 rounded-lg"
-                    }
+                    className="flex-row gap-2 border-1 bg-gradient-to-br from-black via-gray-900 to-slate-900 text-white hover:from-gray-900 hover:via-gray-800 hover:to-slate-800 hover:text-gray-200 dark:from-sky-50 dark:via-blue-50 dark:to-white dark:text-gray-900 dark:hover:from-blue-100 dark:hover:via-sky-100 dark:hover:to-gray-100 dark:hover:text-gray-700 transition-all duration-200"
                   >
                     <ScanFace className={"h-4 w-4"} />
                     Sign in
@@ -118,9 +114,7 @@ const MainNav = () => {
                 >
                   <Link
                     href={"/register"}
-                    className={
-                      "bg-gray-900 text-white border border-gray-900 hover:bg-gray-800 hover:text-white hover:shadow-lg dark:bg-gray-100 dark:text-gray-900 dark:border-gray-100 dark:hover:bg-gray-200 dark:hover:text-gray-900 transition-all duration-200 flex flex-row gap-2 px-4 py-2 rounded-lg"
-                    }
+                    className="flex-row gap-2 border-1 bg-gradient-to-br from-black via-gray-900 to-slate-900 text-white hover:from-gray-900 hover:via-gray-800 hover:to-slate-800 hover:text-gray-200 dark:from-sky-50 dark:via-blue-50 dark:to-white dark:text-gray-900 dark:hover:from-blue-100 dark:hover:via-sky-100 dark:hover:to-gray-100 dark:hover:text-gray-700 transition-all duration-200"
                   >
                     <UserPlus className="h-4 w-4" />
                     Register
